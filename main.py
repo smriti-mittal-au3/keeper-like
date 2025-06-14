@@ -148,7 +148,7 @@ def initiate_zoho_oauth():
     # diff url for prod / local
     # http://localhost:8000/auth/zoho/callback
     # Redirect URI passed does not match with the one configured
-    redirect_uri = "http://localhost:3000/auth/zoho/callback"
+    redirect_uri = "https://keeper-like.onrender.com/auth/zoho/callback"
     # invalid scope, doesn't exist
     # ZohoBooks.contacts.ALL ZohoBooks.transactions.ALL 
     scope = "ZohoBooks.fullaccess.ALL"
@@ -190,7 +190,7 @@ async def handle_callback(request: Request):
                             "grant_type": "authorization_code",
                             "client_id": MY_WEB_CLIENT_ID,
                             "client_secret": MY_WEB_CLIENT_SECRET,
-                            "redirect_uri": "http://localhost:8000/auth/zoho/callback",
+                            "redirect_uri": "https://keeper-like.onrender.com/auth/zoho/callback",
                             "code": code
                         })
 

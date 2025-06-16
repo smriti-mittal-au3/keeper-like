@@ -21,9 +21,21 @@ TOKENS_DIR.mkdir(exist_ok=True)  # ensure it exists
 # 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",  # Allows your local React development server to access the API.
+    "https://keeper-like.onrender.com",  # Your backend's own domain, useful if it makes self-requests.
+    # You can add more origins here, e.g., "https://your-deployed-frontend.com"
+]
+
+
+# allow_origins=["*"] and allow_credentials=True, the browser will block the request 
+# and you'll get the CORS error you described.
+# Why MAN!!!!!!!
+# I guess bcoz you are allowing credentials, like auth token, header
+# so how can you allow it from ALL 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

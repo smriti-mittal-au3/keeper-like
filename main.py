@@ -21,18 +21,17 @@ TOKENS_DIR.mkdir(exist_ok=True)  # ensure it exists
 # 
 app = FastAPI()
 
+# allow_origins=["*"] and allow_credentials=True, the browser will block the request 
+# and you'll get the CORS error you described.
+# Why MAN!!!!!!!
+# I guess bcoz you are allowing credentials, like auth token, header
+# so how can you allow it from ALL 
 origins = [
     "http://localhost:3000",  # Allows your local React development server to access the API.
     "https://keeper-like.onrender.com",  # Your backend's own domain, useful if it makes self-requests.
     # You can add more origins here, e.g., "https://your-deployed-frontend.com"
 ]
 
-
-# allow_origins=["*"] and allow_credentials=True, the browser will block the request 
-# and you'll get the CORS error you described.
-# Why MAN!!!!!!!
-# I guess bcoz you are allowing credentials, like auth token, header
-# so how can you allow it from ALL 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -272,7 +271,10 @@ async def review_transactions():
         code = response.json().get("code", "")
         message = response.json().get("message", "")
         contacts = response.json().get("contacts", [])
-        print(code, message, len(contacts), contacts[0], "contacts")
+        
+        # File "/opt/render/project/src/main.py", line 275, in review_transactions
+        # print(code, message, len(contacts), contacts[0], "contacts")
+        print(code, message, len(contacts), "contacts")
 
         flagged = []
         seen = set()

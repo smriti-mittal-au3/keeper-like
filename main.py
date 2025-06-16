@@ -29,7 +29,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",  # Allows your local React development server to access the API.
     "https://keeper-like.onrender.com",  # Your backend's own domain, useful if it makes self-requests.
-    # You can add more origins here, e.g., "https://your-deployed-frontend.com"
+    "https://childokay.com"
 ]
 
 app.add_middleware(
@@ -271,7 +271,7 @@ async def review_transactions():
         code = response.json().get("code", "")
         message = response.json().get("message", "")
         contacts = response.json().get("contacts", [])
-        
+
         # File "/opt/render/project/src/main.py", line 275, in review_transactions
         # print(code, message, len(contacts), contacts[0], "contacts")
         print(code, message, len(contacts), "contacts")
